@@ -13,7 +13,7 @@ Create table ksiegowosc.godziny (
 id_godziny serial primary key,
 data date not null,
 liczba_godzin numeric(5,2) not null check (liczba_godzin >= 0),
-id_pracownika int not null references ksiegowosc.pracownicy(id_pracownika)
+id_pracownika int not null references ksiegowosc.pracownicy(id_pracownika) on delete cascade
 );
 
 Create table ksiegowosc.pensja (
@@ -31,7 +31,7 @@ kwota numeric(10,2) not null check (kwota >=0)
 Create table ksiegowosc.wynagrodzenie (
 id_wynagrodzenia serial not null,
 data date not null,
-id_pracownika int not null references ksiegowosc.pracownicy(id_pracownika),
+id_pracownika int not null references ksiegowosc.pracownicy(id_pracownika) on delete cascade,
 id_godziny int not null references ksiegowosc.godziny(id_godziny),
 id_pensji int not null references ksiegowosc.pensja(id_pensji),
 id_premii int references ksiegowosc.premia(id_premii)
@@ -102,7 +102,6 @@ INSERT INTO ksiegowosc.wynagrodzenie (data, id_pracownika, id_godziny, id_pensji
 ('2025-10-05', 8, 8, 8, NULL),
 ('2025-10-05', 9, 9, 9, 8),
 ('2025-10-05', 10, 10, 10, NULL);
-
 
 
 
